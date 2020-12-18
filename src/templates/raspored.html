@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Raspored</title>
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+        </script>
+</head>
+<body>
+    <b><i>{{bosko}}</i></b>
+    <br><br><br>
+    <style>
+        #myTable tr:nth-child(even) {background-color: lightblue;}
+        #myTable tr:nth-child(odd) {background-color: rgb(125, 125, 236);}
+
+        ul li{
+            display: inline-block;
+        }
+        th{ background-color: white;}
+    </style>
+    <input id="myInput" type="text" placeholder="Search..">
+    <table >
+        <thead>
+            <tr>
+                <th><b>Predmet</b></th>
+                <th><b>Tip</b></th>
+                <th><b>Nastavnik</b></th>
+                <th><b>Grupe</b></th>
+                <th><b>Dan</b></th>
+                <th><b>Termin</b></th>
+                <th><b>Vreme</b></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            {% for p in predmeti %}
+            <tr>
+                <td>{{p[1]}}</td>
+                <td>{{p[2]}}</td>
+                <td>{{p[3]}}</td>
+                <td>{{p[4]}}</td>
+                <td>{{p[5]}}</td>
+                <td>{{p[6]}}</td>
+                <td>{{p[7]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br><br>
+
+    <table style="float: left;">
+        {% for n in nastavnik %}
+        <tr>
+            <td><a href="">{{n[0]}}</a></td>            
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <table >
+        {% for g in grupe %}
+        <tr>
+            <td><a href="">{{g[0]}}</a></td>            
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+</body>
+</html>
